@@ -12,6 +12,8 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { BookingProvider } from "./context/Booking.jsx";
 import ScrollToTop from './components/common/ScrollToTop';
+import { RoomProvider } from "./context/RoomContext.jsx";
+import { ActivityProvider } from "./context/ActivityContext.jsx";
 
 // Load your Stripe public key
 const stripePromise = loadStripe(
@@ -25,11 +27,15 @@ createRoot(document.getElementById("root")).render(
         <Elements stripe={stripePromise}>
           <CartProvider>
             <SearchProvider>
-              <BrowserRouter>
-              <ScrollToTop />
-                <App />
-                <ToastContainer />
-              </BrowserRouter>
+              <RoomProvider>
+                <ActivityProvider>
+                  <BrowserRouter>
+                    <ScrollToTop />
+                    <App />
+                    <ToastContainer />
+                  </BrowserRouter>
+                </ActivityProvider>
+              </RoomProvider>
             </SearchProvider>
           </CartProvider>
         </Elements>

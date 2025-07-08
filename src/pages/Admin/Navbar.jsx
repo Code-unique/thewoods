@@ -1,18 +1,18 @@
+// src/components/admin/Navbar.jsx (or wherever your Navbar is)
 import React from "react";
-import { FaUser, FaPlus, FaList, FaFolder, FaMap } from "react-icons/fa";
+import { FaUser, FaPlus, FaList, FaFolder, FaMap, FaBed, FaHiking } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const navbarMenu = [
   { id: 1, name: "Admin Details", link: "/admin/details", icon: <FaUser /> },
   { id: 2, name: "Create Post", link: "/admin/create-post", icon: <FaPlus /> },
   { id: 3, name: "All Posts", link: "/admin/all-post", icon: <FaList /> },
-  {
-    id: 4,
-    name: "Create Category",
-    link: "/admin/create-category",
-    icon: <FaFolder />,
-  },
+  { id: 4, name: "Create Category", link: "/admin/create-category", icon: <FaFolder /> },
   { id: 5, name: "All Orders", link: "/admin/all-booking", icon: <FaMap /> },
+
+  // New admin pages:
+  { id: 6, name: "Manage Rooms", link: "/admin/rooms", icon: <FaBed /> },
+  { id: 7, name: "Manage Activities", link: "/admin/activities", icon: <FaHiking /> },
 ];
 
 const Navbar = () => {

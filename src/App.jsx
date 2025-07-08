@@ -1,6 +1,7 @@
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";
+
 import HomePage from "./pages/HomePage";
 import About from "./pages/About";
 import SearchPage from "./pages/SearchPage";
@@ -35,11 +36,16 @@ import ActivityDetail from './pages/activity/ActivityDetail';
 import RoomDetail from './pages/room/RoomDetail';
 import FooterDivider from "./components/FooterDivider";
 
+// Import your new Admin pages for rooms and activities
+import RoomsAdmin from "./pages/Admin/RoomsAdmin";
+import ActivitiesAdmin from "./pages/Admin/ActivitiesAdmin";
+
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
@@ -62,21 +68,27 @@ function App() {
         <Route path="/thank-you" element={<ThankYou />} />
         <Route path="/category/:slug" element={<SelectedCategory />} />
 
+        {/* User Protected Routes */}
         <Route path="/user" element={<UserRoutes />}>
-          <Route path="" element={<UserDashboard />} />
+          <Route index element={<UserDashboard />} />
           <Route path="your-order" element={<YourOrder />} />
           {/* <Route path="create-post" element={<ContributePost />} /> */}
         </Route>
 
-        {/* Protected Admin Routes */}
+        {/* Admin Protected Routes */}
         <Route path="/admin" element={<PrivateRoute />}>
-          <Route path="" element={<DashBoard />} />
-          <Route path="/admin/create-post" element={<CreatePost />} />
-          <Route path="/admin/create-category" element={<CreateCategory />} />
-          <Route path="/admin/all-post" element={<AllPost />} />
-          <Route path="/admin/details" element={<Details />} />
-          <Route path="/admin/all-booking" element={<AllTrip />} />
-          <Route path="/admin/post/:slug" element={<UpdatePost />} />
+          {/* Nested routes for admin without repeating /admin */}
+          <Route index element={<DashBoard />} />
+          <Route path="create-post" element={<CreatePost />} />
+          <Route path="create-category" element={<CreateCategory />} />
+          <Route path="all-post" element={<AllPost />} />
+          <Route path="details" element={<Details />} />
+          <Route path="all-booking" element={<AllTrip />} />
+          <Route path="post/:slug" element={<UpdatePost />} />
+
+          {/* New Admin Pages */}
+          <Route path="rooms" element={<RoomsAdmin />} />
+          <Route path="activities" element={<ActivitiesAdmin />} />
         </Route>
       </Routes>
       <FooterDivider />
